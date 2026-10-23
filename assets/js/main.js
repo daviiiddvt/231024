@@ -363,7 +363,7 @@ function renderPolaroids() {
   const container = document.getElementById("polaroidGallery");
   if (!container) return;
 
-  const rotations = [-2.5, 3, -1.5, 2, -3, 1.5];
+  const rotations = [-2.5, 3, -1.5, 2, -3, 1.5, -2, 2.5];
 
   container.innerHTML = CONFIG.polaroids.map((p, idx) => {
     const rot = rotations[idx % rotations.length];
@@ -374,7 +374,7 @@ function renderPolaroids() {
           <!-- Frente -->
           <div class="polaroid-front">
             <div class="w-full flex-1 min-h-0 rounded overflow-hidden bg-rose-50 relative group/pfront">
-              <img src="${p.image}" alt="${p.caption}" class="w-full h-full object-cover" style="object-position: ${p.position || 'center'};" onerror="this.src='assets/images/foto${(idx%5)+1}.jpg'">
+              <img src="${p.image}" alt="${p.caption}" class="w-full h-full object-cover" style="object-position: ${p.position || 'center 30%'};" onerror="this.src='assets/images/foto1.jpg'">
               <!-- Botón lupa para ver foto completa -->
               <button onclick="event.stopPropagation(); openLightbox('${p.image}', '${p.caption}', 'David & Sofía ❤️')" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/40 hover:bg-black/70 text-white flex items-center justify-center text-xs backdrop-blur-sm transition-transform hover:scale-110 shadow-sm" title="Ver foto completa">
                 <i class="fas fa-expand"></i>

@@ -94,6 +94,54 @@ const CONFIG = {
       position: "center 38%",
       caption: "Recorriendo el mundo",
       secretNote: "Cualquier lugar es perfecto si voy agarrado de tu mano."
+    },
+    {
+      image: "assets/images/foto6.jpg",
+      position: "center 30%",
+      caption: "Instantes mágicos",
+      secretNote: "Me encanta cuando nos miramos y entendemos todo sin decir una sola palabra."
+    },
+    {
+      image: "assets/images/foto7.jpg",
+      position: "center 30%",
+      caption: "Tu sonrisa favorita",
+      secretNote: "Haces que cualquier día gris se convierta en luz y alegría."
+    },
+    {
+      image: "assets/images/foto8.jpg",
+      position: "center 30%",
+      caption: "Mil recuerdos juntos",
+      secretNote: "Cada foto contigo es un tesoro que guardo en mi corazón para siempre."
+    },
+    {
+      image: "assets/images/foto9.jpg",
+      position: "center 30%",
+      caption: "Siempre de tu mano",
+      secretNote: "No importa el camino ni el destino mientras lo camine a tu lado."
+    },
+    {
+      image: "assets/images/foto10.jpg",
+      position: "center 30%",
+      caption: "Nuestras mejores risas",
+      secretNote: "Adoro cada ataque de risa tonta que nos da cuando estamos juntos."
+    },
+    {
+      image: "assets/images/foto11.jpg",
+      position: "center 30%",
+      caption: "Un amor único",
+      secretNote: "Gracias por hacerme sentir la persona más afortunada del mundo cada día."
+    },
+    {
+      image: "assets/images/foto12.jpg",
+      position: "center 30%",
+      caption: "Pura complicidad",
+      secretNote: "Eres mi compañera de vida, mi mejor amiga y el amor de mi vida."
+    },
+    {
+      image: "assets/images/foto13.jpg",
+      position: "center 30%",
+      caption: "Hasta el infinito y más",
+      secretNote: "Por todos los recuerdos que ya tenemos y por los millones que nos quedan por crear."
     }
   ],
 
