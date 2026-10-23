@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarjeta Regalo Aniversario - David & Sofía</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    @media print {
+      body { background: transparent; padding: 0; }
+      .no-print { display: none !important; }
+      .print-card { box-shadow: none !important; border: 1px solid #fecdd3 !important; }
+    }
+    .font-romantic { font-family: 'Dancing Script', cursive; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+  </style>
+</head>
+<body class="bg-rose-50/50 min-h-screen py-10 px-4 flex flex-col items-center justify-center font-sans antialiased text-gray-800">
+
+  <!-- Botones de acción superiores (no se imprimen) -->
+  <div class="no-print max-w-md w-full mb-6 flex flex-wrap gap-3 justify-center">
+    <button onclick="window.print()" class="px-6 py-2.5 rounded-full bg-rose-600 hover:bg-rose-700 text-white font-medium shadow-md shadow-rose-200 transition-all flex items-center gap-2 text-sm">
+      <i class="fas fa-print"></i> Imprimir Tarjeta / Guardar en PDF
+    </button>
+    <a href="codigo_qr.png" download="QR_Aniversario_231024.png" class="px-5 py-2.5 rounded-full bg-white hover:bg-rose-50 text-rose-600 border border-rose-200 font-medium shadow-sm transition-all text-sm flex items-center gap-2">
+      <i class="fas fa-download"></i> Descargar Imagen QR
+    </a>
+  </div>
+
+  <!-- TARJETA POSTAL IMPRIMIBLE -->
+  <div class="print-card bg-white rounded-3xl p-8 sm:p-12 max-w-md w-full border-2 border-rose-100 shadow-2xl relative overflow-hidden text-center">
+    
+    <!-- Decoración de esquinas florales/corazones -->
+    <div class="absolute -top-8 -right-8 w-28 h-28 bg-rose-100/60 rounded-full blur-xl pointer-events-none"></div>
+    <div class="absolute -bottom-8 -left-8 w-28 h-28 bg-pink-100/60 rounded-full blur-xl pointer-events-none"></div>
+
+    <!-- Encabezado de la tarjeta -->
+    <span class="inline-block text-[11px] font-bold text-rose-500 uppercase tracking-widest px-3 py-1 rounded-full bg-rose-50 border border-rose-100 mb-4">
+      23 de Octubre de 2024 • Nuestro Aniversario
+    </span>
+
+    <h1 class="text-5xl font-romantic text-rose-600 mb-2">
+      David & Sofía
+    </h1>
+
+    <p class="font-serif italic text-gray-600 text-sm mb-6 max-w-xs mx-auto">
+      "Hay momentos que merecen guardarse para siempre..."
+    </p>
+
+    <!-- Contenedor del Código QR -->
+    <div class="relative mx-auto my-4 w-60 h-60 p-3 bg-white rounded-2xl shadow-lg border-2 border-rose-200 flex items-center justify-center">
+      <img src="codigo_qr.svg" alt="Código QR Aniversario" class="w-full h-full object-contain" onerror="this.src='codigo_qr.png'">
+      <!-- Mini corazón central superpuesto -->
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md border border-rose-200">
+          <i class="fas fa-heart text-rose-600 text-lg"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enlace directo visible -->
+    <p class="text-xs font-bold text-rose-600 tracking-wider mb-1 flex items-center justify-center gap-1.5">
+      <i class="fas fa-globe text-[11px]"></i> daviiiddvt.github.io/aniversario
+    </p>
+
+    <!-- Instrucción para Sofía -->
+    <div class="mt-4 p-3 bg-rose-50/70 rounded-xl border border-rose-100 text-center">
+      <p class="text-xs text-gray-700 font-medium flex items-center justify-center gap-1.5">
+        <i class="fas fa-camera text-rose-500"></i> Abre la cámara de tu móvil y escanea el código
+      </p>
+    </div>
+
+    <!-- Dedicatoria final -->
+    <div class="mt-6 pt-4 border-t border-rose-100 flex items-center justify-between text-xs text-gray-500">
+      <span>Para: <strong>Sofía</strong> ❤️</span>
+      <span>De: <strong>David</strong></span>
+    </div>
+
+  </div>
+
+  <p class="no-print text-xs text-gray-400 mt-6 text-center">
+    Tip: Puedes recortar esta tarjeta e introducirla en un sobre o regalo físico.
+  </p>
+
+</body>
+</html>
+

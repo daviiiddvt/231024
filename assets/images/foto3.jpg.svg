@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a78bfa;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="800" height="800" fill="url(#grad)" rx="24"/>
+  <circle cx="400" cy="320" r="130" fill="rgba(255,255,255,0.2)" />
+  <circle cx="400" cy="320" r="95" fill="rgba(255,255,255,0.3)" />
+  <text x="400" y="350" font-size="90" text-anchor="middle" font-family="'Segoe UI Emoji', sans-serif">🎵</text>
+  <text x="400" y="520" font-size="44" font-weight="bold" fill="#ffffff" text-anchor="middle" font-family="'Segoe UI', Roboto, sans-serif" filter="url(#shadow)">Emborracharme</text>
+  <text x="400" y="580" font-size="28" fill="rgba(255,255,255,0.9)" text-anchor="middle" font-family="'Segoe UI', Roboto, sans-serif">Lori Meyers en bucle</text>
+  <text x="400" y="730" font-size="20" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-family="'Segoe UI', sans-serif">Toca para poner aquí vuestra foto favorita</text>
+</svg>
