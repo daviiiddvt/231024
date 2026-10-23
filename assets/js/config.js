@@ -5,8 +5,8 @@
 
 const CONFIG = {
   // Nombres de la pareja
-  partner1: "David",
-  partner2: "Sofía",
+  partner1: "Sofía",
+  partner2: "David",
   
   // Fecha en que comenzó su historia de amor: 23 de Octubre de 2024
   startDate: new Date("2024-10-23T00:00:00"),
@@ -23,41 +23,41 @@ const CONFIG = {
   timeline: [
     {
       date: "23 de Octubre, 2024",
-      title: "El comienzo de nuestra historia",
-      description: "El día exacto en que decidimos empezar este camino juntos. Lo que empezó como una chispa se convirtió en lo más bonito de mi vida.",
+      title: "Una foto, una frase: \"Me caso\".",
+      description: "Una noche de otoño en la que se nos antojó subir un puente para decirte cuatro cositas.",
       image: "assets/images/foto1.jpg",
       position: "center 28%",
       tag: "El Inicio"
     },
     {
-      date: "Nuestra Primera Cita",
-      title: "Risas, nervios y miradas",
-      description: "Esos nervios del principio que se esfumaron en cuanto sonreíste. Supe desde ese instante que eras alguien muy especial.",
+      date: "Óleo sobre lienzo",
+      title: "Risas en el Rivoli - Canito",
+      description: "El autor quiso reflejar lo que su boca era incapaz de decir, pero su mirada era capaz de pintar",
       image: "assets/images/foto2.jpg",
       position: "center 15%",
       tag: "Inolvidable"
     },
     {
-      date: "Nuestra Canción",
-      title: "Entre acordes de Lori Meyers",
-      description: "\"Emborracharme\" sonando de fondo y nosotros sintiendo que el mundo entero se detenía a nuestro alrededor.",
-      image: "assets/images/foto3.jpg",
+      date: "80'sss",
+      title: "Entre copas con Luisa",
+      description: "\"Y beber todo ese batidooo\". Para batido el que se había bebido Luisa esa noche. P.D.: Te echamos de menos Luisa",
+      image: "assets/images/foto4.jpg",
       position: "center 48%",
       tag: "Banda Sonora"
     },
     {
-      date: "Nuestras Aventuras y Viajes",
-      title: "Descubriendo lugares de tu mano",
-      description: "Cualquier rincón del mundo se convierte en el mejor destino si estoy a tu lado. Gracias por cada viaje y escapada.",
-      image: "assets/images/foto4.jpg",
+      date: "<",
+      title: "Amy Casavino, pero al final no",
+      description: "London Eye o Ay con London?",
+      image: "assets/images/foto5.jpg",
       position: "center 52%",
       tag: "Aventuras"
     },
     {
       date: "Hoy y Siempre",
-      title: "Celebrando nuestro amor",
-      description: "Mirar atrás y ver todo lo que hemos compartido solo me confirma una cosa: quiero seguir viviendo cada momento contigo.",
-      image: "assets/images/foto5.jpg",
+      title: "Quiero mucho a esta pedazo de mostra",
+      description: "Yo si que sigo aun borracho perdido, y gracias a dios me atrevo a contarte que yo quiero ser tu amante",
+      image: "assets/images/foto3.jpg",
       position: "center 38%",
       tag: "Aniversario"
     }
@@ -66,82 +66,52 @@ const CONFIG = {
   // Galería de fotos Polaroid interactivas (al hacer clic revelan el mensaje detrás)
   polaroids: [
     {
-      image: "assets/images/foto1.jpg",
-      position: "center 28%",
-      caption: "Tú y yo, siempre",
-      secretNote: "Amo tu sonrisa cuando crees que no te estoy mirando."
-    },
-    {
-      image: "assets/images/foto2.jpg",
-      position: "center 15%",
-      caption: "Bajo las luces de París",
-      secretNote: "Ese beso y ese momento se quedaron grabados en mi corazón para siempre."
-    },
-    {
-      image: "assets/images/foto3.jpg",
-      position: "center 48%",
-      caption: "Nuestras locuras",
-      secretNote: "No hay nadie con quien me ría y cante más fuerte en este planeta."
-    },
-    {
-      image: "assets/images/foto4.jpg",
-      position: "center 52%",
-      caption: "Cómplices",
-      secretNote: "Gracias por ser mi lugar seguro, mi mayor apoyo y mi mejor compañera."
-    },
-    {
-      image: "assets/images/foto5.jpg",
-      position: "center 38%",
-      caption: "Recorriendo el mundo",
-      secretNote: "Cualquier lugar es perfecto si voy agarrado de tu mano."
-    },
-    {
       image: "assets/images/foto6.jpg",
       position: "center 30%",
-      caption: "Instantes mágicos",
-      secretNote: "Me encanta cuando nos miramos y entendemos todo sin decir una sola palabra."
+      caption: "Ahí na (nunca supe como se escribe)",
+      secretNote: "Piensa en la cara de mi hermano haciéndonos la foto"
     },
     {
       image: "assets/images/foto7.jpg",
       position: "center 30%",
-      caption: "Tu sonrisa favorita",
-      secretNote: "Haces que cualquier día gris se convierta en luz y alegría."
+      caption: "Masbaratillassss",
+      secretNote: "Para mascarillas, las FFP2"
     },
     {
       image: "assets/images/foto8.jpg",
       position: "center 30%",
-      caption: "Mil recuerdos juntos",
-      secretNote: "Cada foto contigo es un tesoro que guardo en mi corazón para siempre."
+      caption: "Verano, veranito",
+      secretNote: "¿Sabes con qué rima verano?, con chorizo portuano. Que pena que no me guste"
     },
     {
       image: "assets/images/foto9.jpg",
       position: "center 30%",
-      caption: "Siempre de tu mano",
-      secretNote: "No importa el camino ni el destino mientras lo camine a tu lado."
+      caption: "Sin comentarios",
+      secretNote: "He dicho sin comentarios, ¿qué haces girando friki?"
     },
     {
       image: "assets/images/foto10.jpg",
       position: "center 30%",
-      caption: "Nuestras mejores risas",
-      secretNote: "Adoro cada ataque de risa tonta que nos da cuando estamos juntos."
+      caption: "Mirror beach",
+      secretNote: "Mira que eres guapa eh"
     },
     {
       image: "assets/images/foto11.jpg",
       position: "center 30%",
-      caption: "Un amor único",
-      secretNote: "Gracias por hacerme sentir la persona más afortunada del mundo cada día."
+      caption: "Pecho palomo",
+      secretNote: "Siempre me molará esta foto"
     },
     {
       image: "assets/images/foto12.jpg",
       position: "center 30%",
-      caption: "Pura complicidad",
-      secretNote: "Eres mi compañera de vida, mi mejor amiga y el amor de mi vida."
+      caption: "Arenala y arenalo",
+      secretNote: "Piensa en la cara de Irene haciéndonos la foto"
     },
     {
       image: "assets/images/foto13.jpg",
       position: "center 30%",
-      caption: "Hasta el infinito y más",
-      secretNote: "Por todos los recuerdos que ya tenemos y por los millones que nos quedan por crear."
+      caption: "Felicidades cariño",
+      secretNote: "Vara cuerpo te hacía ese vestido muchacho"
     }
   ],
 
@@ -150,16 +120,16 @@ const CONFIG = {
     {
       question: "¿Cuál es nuestra canción oficial que nunca dejamos de cantar?",
       options: [
-        "Emborracharme - Lori Meyers",
-        "Alta Fidelidad - Lori Meyers",
-        "Mi Realidad - Lori Meyers",
-        "¿A-ha - Take On Me?"
+        "Emborracharme",
+        "La morocha",
+        "Un cachito de luz",
+        "Esta vida loca"
       ],
       correct: 0,
-      loveMessage: "¡Exacto! Esa guitarra y esa letra nos definen como nadie."
+      loveMessage: "Que alguien te saque a bailar o qué?"
     },
     {
-      question: "¿Qué fecha comenzó oficialmente nuestra increíble aventura juntos?",
+      question: "Elige la fecha que tienes que elegir, anda",
       options: [
         "15 de Septiembre de 2024",
         "23 de Octubre de 2024",
@@ -167,7 +137,7 @@ const CONFIG = {
         "1 de Noviembre de 2024"
       ],
       correct: 1,
-      loveMessage: "¡El mejor 23 de octubre del calendario! Grabado a fuego."
+      loveMessage: "Grabado a fuego niña"
     },
     {
       question: "¿Quién de los dos se suele despistar o tardar más en arreglarse?",
@@ -178,18 +148,18 @@ const CONFIG = {
         "Ninguno, somos relojes suizos"
       ],
       correct: 0, // Puedes cambiar el índice según vuestro caso
-      loveMessage: "¡Jajaja! Vale la pena esperar cada segundo por verte brillar."
+      loveMessage: "¡Jajaja! No, enserio"
     },
     {
       question: "¿Cuál es el superpoder secreto de Sofía?",
       options: [
         "Hacer reír a David con cualquier tontería",
         "Tener siempre la razón (incluso cuando no)",
-        "Tener los abrazos más curativos del universo",
-        "¡Todas las anteriores son 100% reales!"
+        "Chillar todavía más cuando le dices que no chille",
+        "¡Todas las anteriores son 100% correctas!"
       ],
       correct: 3,
-      loveMessage: "¡Sin duda! Tienes todos los superpoderes juntos."
+      loveMessage: "¡Sin duda! Eres perfecta chocho."
     },
     {
       question: "Si tuviéramos un día libre entero para nosotros solos, ¿cuál sería el plan perfecto?",
@@ -197,10 +167,10 @@ const CONFIG = {
         "Manta, peli, mimos y comida rica en casa",
         "Escapada improvisada en coche con buena música",
         "Cena romántica y copas charlando horas enteras",
-        "Cualquiera, mientras sea a tu lado"
+        "Limpiar el baño"
       ],
       correct: 3,
-      loveMessage: "¡Cualquier sitio es magia si estamos juntos!"
+      loveMessage: "Un buen baño limpio como le sienta a uno eh"
     }
   ],
 
@@ -225,7 +195,7 @@ const CONFIG = {
       icon: "fa-film"
     },
     {
-      title: "Comodín del Amor Indiscutible",
+      title: "Comodín del Amor",
       description: "Válido para lo que tú quieras pedirme en cualquier momento, sin objeciones.",
       code: "COMODIN-GOLD",
       icon: "fa-crown"
@@ -246,34 +216,34 @@ const CONFIG = {
 
   // 100 Razones por las que te amo (puedes añadir o editar las que quieras)
   reasons: [
-    "Por la forma en que tus ojos brillan cuando te entusiasmas con algo.",
-    "Porque me haces reír incluso en mis días más complicados.",
-    "Por cómo encaja tu mano perfectamente dentro de la mía.",
-    "Por cantar a pleno pulmón con 'Emborracharme' de Lori Meyers en el coche.",
-    "Por tu bondad infinita y el corazón tan grande que tienes.",
-    "Por tus abrazos, que tienen la capacidad de detener el tiempo.",
-    "Por ser mi cómplice, mi confidente y mi mejor amiga.",
-    "Por la paciencia y el amor con el que me cuidas siempre.",
-    "Por cada 'buenos días' y cada 'buenas noches' que me alegran el alma.",
-    "Por cómo te ríes con mis tonterías aunque sean malas.",
-    "Porque contigo todo se vuelve más fácil y bonito.",
-    "Por tu valentía para afrontar cada reto que se te pone por delante.",
-    "Por compartir tus sueños, tus miedos y tu vida conmigo.",
-    "Porque eres mi hogar en cualquier parte del mundo.",
-    "Simplemente por ser tú: única, hermosa y maravillosa."
+    "Por la manera que tienes de quereme",
+    "Porque me encanta que seas mi mejor amiga",
+    "Por darme la oportunidad de conocerte y conocer lo tuyo",
+    "Porque si y punto",
+    "Porque tenemos que decidir aun quien tiene más fuerza de los dos",
+    "Porque me gusta quererte",
+    "Porque quiero que mi hijo algún día te llame mamá",
+    "Por la paciencia que tienes con una persona que no se acuerda de nada",
+    "Por cada uno de tus 'buenos días' tan espontáneos",
+    "Por cómo te ríes con mis tonterías aunque sean lamentables.",
+    "Porque contigo apetece ser feliz",
+    "Por elegirme a mí entre tantos aquella noche",
+    "Por querer dormir conmigo cada una de ellas",
+    "Porque eres mi familia",
+    "Simplemente por ser tú: modelo, cantante y actriz."
   ],
 
   // Carta de amor del sobre lacrado
   letter: {
     salutation: "Mi querida Sofía,",
-    body: `Parece que fue ayer cuando empezamos a escribir esta historia el 23 de octubre de 2024, y sin embargo, siento que te conozco y te amo de toda la vida.
-
-En este tiempo has llenado mis días de luz, de carcajadas sinceras, de complicidad y de una paz que no cambiaría por nada. Me encanta cómo bailamos la vida juntos, cómo nos miramos y nos entendemos sin decir una sola palabra, y cómo cada instante a tu lado se convierte en un recuerdo imborrable.
-
-Gracias por ser como eres, por tu ternura, por tu alegría contagiosa y por elegir caminar de mi mano cada día. Este es solo un pequeño rincón para recordarte lo infinitamente importante y especial que eres para mí.
-
-Feliz aniversario, mi amor. Por este y por todos los que nos quedan por celebrar.`,
-    closing: "Siempre tuyo,",
+    body: `A veces no nos damos cuenta, que la verdadera felicidad está en las pequeñas cosas. A veces dejamos pasar de largo, acostumbrados por el paso del tiempo, momentos concretos para decirnos las cosas que de verdad importan. A veces solo necesitamos recordar lo que un día quisimos decir a alguien, a ese alguien que idealizabamos pensando en lo mucho que podrías llegar a quererle. Pues ese día es hoy, y el momento es ahora. Ahora es cuando debo pararme, despertar y darme cuenta de la mujer con la que tengo la suerte de compartir mis días, con la mujer con la que quiero estar, por imposición, por deseo y sobre todo porque te quiero. Te quiero más que a nadie he podido llegar a querer nunca, te quiero por castigo, por razón y causa. Porque dependo de tu sonrisa diaria para saber que todo está bien, que estoy en casa. Tanto buscar casas para tenerla justo delante. Siempre la he tenido delante, desde ese 23 o 12, o el día que tú elijas, me da igual, pero eligelo. Elígelo de la misma manera que me elegiste a mí, con esa firmeza, con la certeza de lanzarte al vacío sin importar no poder salir de él, para que al final, sin ni siquiera saberlo, llenaras tú el mío. 
+    
+    Hoy tengo la suerte de poder estar contigo, aquí sentados, frente a frente. Pero también tengo el deber, las ganas y el verdadero gusto de seguir queriéndote.
+    
+    Felicidad Sofía, te lo mereces.
+    
+    Un beso muy fuerte guapa.`,
+    closing: "Gracias,",
     signature: "David ❤️"
   }
 };
