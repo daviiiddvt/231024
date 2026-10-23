@@ -19,8 +19,6 @@
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-  <!-- YouTube IFrame API -->
-  <script src="https://www.youtube.com/iframe_api"></script>
 
   <!-- Estilos personalizados -->
   <link rel="stylesheet" href="assets/css/style.css">
@@ -59,12 +57,6 @@
       title="Reproducir / Pausar">
       <i class="fas fa-play text-rose-500 text-xs"></i>
     </button>
-    <!-- Botón Ver Video -->
-    <button id="toggleVideoBtn"
-      class="w-8 h-8 rounded-full bg-rose-50 hover:bg-rose-100 flex items-center justify-center transition-colors text-rose-400 hover:text-rose-600"
-      title="Ver videoclip">
-      <i class="fas fa-tv text-xs"></i>
-    </button>
     <audio id="bgAudio" loop preload="auto">
       <source src="assets/audio/emborracharme.mp3" type="audio/mpeg">
       <source src="assets/audio/Lori Meyers - Emborracharme [bt-92dlspc4].mp3" type="audio/mpeg">
@@ -73,25 +65,6 @@
     <audio id="letterAudio" preload="auto">
       <source src="assets/audio/carta_voz.mp3" type="audio/mpeg">
     </audio>
-  </div>
-
-  <!-- Mini Ventana Flotante del Videoclip de Lori Meyers -->
-  <div id="videoModal"
-    class="fixed bottom-24 right-6 z-50 bg-white/95 backdrop-blur-md rounded-2xl p-3 border border-rose-200 shadow-2xl transition-all duration-300 hidden max-w-[320px] sm:max-w-[360px] w-full">
-    <div class="flex items-center justify-between pb-2 mb-2 border-b border-rose-100 text-xs font-bold text-gray-700">
-      <span class="flex items-center gap-1.5 text-rose-600">
-        <i class="fas fa-heart text-xs"></i> Lori Meyers - Emborracharme
-      </span>
-      <button id="closeVideoBtn" class="text-gray-400 hover:text-rose-500 p-1">
-        <i class="fas fa-times text-sm"></i>
-      </button>
-    </div>
-    <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black shadow-inner">
-      <div id="youtubePlayerContainer" class="w-full h-full"></div>
-    </div>
-    <p class="text-[11px] text-gray-500 text-center mt-2">
-      Sonando para nosotros dos ❤️
-    </p>
   </div>
 
   <!-- ========================================================

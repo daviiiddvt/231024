@@ -69,52 +69,14 @@ function initLiveCounter() {
 /* ========================================================
    2. REPRODUCTOR DE MÚSICA ("Emborracharme" - Lori Meyers)
    ======================================================== */
-let ytPlayer = null;
-let isYtReady = false;
 let isPlaying = false;
 let updatePlayerUI = null;
-
-// Callback oficial de la API de YouTube
-window.onYouTubeIframeAPIReady = function() {
-  ytPlayer = new YT.Player('youtubePlayerContainer', {
-    height: '100%',
-    width: '100%',
-    videoId: (CONFIG.song && CONFIG.song.youtubeId) ? CONFIG.song.youtubeId : 'd9NF2edxy-M',
-    playerVars: {
-      autoplay: 0,
-      controls: 1,
-      rel: 0,
-      modestbranding: 1,
-      playsinline: 1,
-      loop: 1,
-      playlist: (CONFIG.song && CONFIG.song.youtubeId) ? CONFIG.song.youtubeId : 'd9NF2edxy-M'
-    },
-    events: {
-      onReady: () => {
-        isYtReady = true;
-        console.log("Reproductor de Lori Meyers (YouTube) listo.");
-      },
-      onStateChange: (event) => {
-        if (event.data === YT.PlayerState.PLAYING) {
-          isPlaying = true;
-          if (updatePlayerUI) updatePlayerUI(true);
-        } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-          isPlaying = false;
-          if (updatePlayerUI) updatePlayerUI(false);
-        }
-      }
-    }
-  });
-};
 
 function initMusicPlayer() {
   const localAudio = document.getElementById("bgAudio");
   const playBtn = document.getElementById("musicToggleBtn");
   const playerPill = document.getElementById("musicPlayerPill");
   const musicTitle = document.getElementById("musicTitle");
-  const toggleVideoBtn = document.getElementById("toggleVideoBtn");
-  const closeVideoBtn = document.getElementById("closeVideoBtn");
-  const videoModal = document.getElementById("videoModal");
   const musicInfoBtn = document.getElementById("musicInfoBtn");
   const musicIconBtn = document.getElementById("musicIconBtn");
 
@@ -150,84 +112,25 @@ function initMusicPlayer() {
   }
 
   function togglePlay() {
-    // 1. PRIORIDAD MÁXIMA: Reproducir el archivo MP3 local
     if (localAudio) {
       if (localAudio.paused) {
-        // Si el video de YouTube estuviese sonando, lo pausamos
-        if (isYtReady && ytPlayer && typeof ytPlayer.pauseVideo === "function") {
-          ytPlayer.pauseVideo();
-        }
-
         localAudio.play().then(() => {
           isPlaying = true;
           updatePlayerUI(true);
         }).catch(err => {
-          console.warn("No se pudo reproducir audio local directamente, intentando YouTube:", err);
-          // Si fallase el MP3 local, fallback a YouTube
-          playYouTubeFallback();
+          console.warn("No se pudo reproducir audio:", err);
         });
       } else {
         localAudio.pause();
         isPlaying = false;
         updatePlayerUI(false);
       }
-      return;
-    }
-
-    // 2. Fallback a YouTube si no existiera el elemento localAudio
-    playYouTubeFallback();
-  }
-
-  function playYouTubeFallback() {
-    if (isYtReady && ytPlayer && typeof ytPlayer.playVideo === "function") {
-      if (!isPlaying) {
-        ytPlayer.playVideo();
-        isPlaying = true;
-        updatePlayerUI(true);
-      } else {
-        ytPlayer.pauseVideo();
-        isPlaying = false;
-        updatePlayerUI(false);
-      }
-    } else {
-      if (videoModal) videoModal.classList.remove("hidden");
     }
   }
 
   if (playBtn) playBtn.addEventListener("click", togglePlay);
   if (musicInfoBtn) musicInfoBtn.addEventListener("click", togglePlay);
   if (musicIconBtn) musicIconBtn.addEventListener("click", togglePlay);
-
-  // Abrir / Cerrar ventana del videoclip de Lori Meyers
-  if (toggleVideoBtn && videoModal) {
-    toggleVideoBtn.addEventListener("click", () => {
-      const isHidden = videoModal.classList.contains("hidden");
-      if (isHidden) {
-        videoModal.classList.remove("hidden");
-        // Al abrir el videoclip, si el MP3 local estaba sonando, lo pausamos y reproducimos el video
-        if (localAudio && !localAudio.paused) {
-          localAudio.pause();
-        }
-        if (isYtReady && ytPlayer && typeof ytPlayer.playVideo === "function") {
-          ytPlayer.playVideo();
-        }
-      } else {
-        videoModal.classList.add("hidden");
-        if (isYtReady && ytPlayer && typeof ytPlayer.pauseVideo === "function") {
-          ytPlayer.pauseVideo();
-        }
-      }
-    });
-  }
-
-  if (closeVideoBtn && videoModal) {
-    closeVideoBtn.addEventListener("click", () => {
-      videoModal.classList.add("hidden");
-      if (isYtReady && ytPlayer && typeof ytPlayer.pauseVideo === "function") {
-        ytPlayer.pauseVideo();
-      }
-    });
-  }
 }
 
 /* ========================================================
@@ -581,15 +484,12 @@ function initLetterEnvelope() {
       if (isOpening) {
         if (openNotice) openNotice.textContent = "Haz clic de nuevo para cerrar la carta";
 
-        // 1. PARAR TODO EL RESTO DE MÚSICA / VIDEOS
+        // 1. PARAR TODO EL RESTO DE MÚSICA
         if (bgAudio && !bgAudio.paused) {
           wasBgPlayingBeforeLetter = true;
           bgAudio.pause();
         } else if (isPlaying) {
           wasBgPlayingBeforeLetter = true;
-        }
-        if (isYtReady && ytPlayer && typeof ytPlayer.pauseVideo === "function") {
-          ytPlayer.pauseVideo();
         }
         if (typeof updatePlayerUI === "function") {
           updatePlayerUI(false);
