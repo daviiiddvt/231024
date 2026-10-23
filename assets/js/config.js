@@ -228,7 +228,7 @@ const CONFIG = {
     "Por cómo te ríes con mis tonterías aunque sean lamentables.",
     "Porque contigo apetece ser feliz",
     "Por elegirme a mí entre tantos aquella noche",
-    "Por querer dormir conmigo cada una de ellas",
+    "Por querer dormir conmigo cada uno de los días",
     "Porque eres mi familia",
     "Simplemente por ser tú: modelo, cantante y actriz."
   ],

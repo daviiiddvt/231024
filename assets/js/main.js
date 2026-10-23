@@ -398,6 +398,147 @@ function renderPolaroids() {
 /* ========================================================
    6. SOBRE LACRADO Y CARTA DE AMOR
    ======================================================== */
+
+// Generador de Tono Musical Suave y Cálido (Web Audio API) para acompañar la carta
+class LetterAmbience {
+  constructor() {
+    this.ctx = null;
+    this.masterGain = null;
+    this.filter = null;
+    this.isPlaying = false;
+    this.intervalId = null;
+    this.chordIndex = 0;
+
+    // Progresión romántica y emotiva en Hz: Cmaj9 -> Am9 -> Fmaj7 -> G6add9
+    this.chords = [
+      [130.81, 196.00, 246.94, 293.66, 329.63], // C3, G3, B3, D4, E4
+      [110.00, 164.81, 196.00, 246.94, 261.63], // A2, E3, G3, B3, C4
+      [87.31, 130.81, 174.61, 220.00, 261.63, 329.63], // F2, C3, F3, A3, C4, E4
+      [98.00, 146.83, 196.00, 246.94, 293.66, 329.63]  // G2, D3, G3, B3, D4, E4
+    ];
+    // Toques melódicos suaves tipo caja de música
+    this.melodies = [
+      [329.63, 392.00, 493.88], // E4, G4, B4
+      [261.63, 329.63, 392.00], // C4, E4, G4
+      [349.23, 440.00, 523.25], // F4, A4, C5
+      [293.66, 392.00, 493.88]  // D4, G4, B4
+    ];
+  }
+
+  init() {
+    if (!this.ctx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      this.ctx = new AudioContext();
+
+      // Master Gain para mantener el volumen suave y no tapar la voz (~7-8%)
+      this.masterGain = this.ctx.createGain();
+      this.masterGain.gain.setValueAtTime(0.0001, this.ctx.currentTime);
+
+      // Filtro paso bajo suave (750 Hz) para dar calidez aterciopelada
+      // y no interferir con las frecuencias vocales de David
+      this.filter = this.ctx.createBiquadFilter();
+      this.filter.type = "lowpass";
+      this.filter.frequency.setValueAtTime(750, this.ctx.currentTime);
+      this.filter.Q.setValueAtTime(1.1, this.ctx.currentTime);
+
+      this.filter.connect(this.masterGain);
+      this.masterGain.connect(this.ctx.destination);
+    }
+    if (this.ctx.state === "suspended") {
+      this.ctx.resume();
+    }
+  }
+
+  playNote(freq, startTime, duration, velocity = 0.05, isBell = false) {
+    if (!this.ctx) return;
+    const osc1 = this.ctx.createOscillator();
+    const osc2 = this.ctx.createOscillator();
+    const noteGain = this.ctx.createGain();
+
+    osc1.type = isBell ? "sine" : "triangle";
+    osc1.frequency.setValueAtTime(freq, startTime);
+
+    // Segundo oscilador con leve coro cálido
+    osc2.type = "sine";
+    osc2.frequency.setValueAtTime(freq * 1.002, startTime);
+
+    const attack = isBell ? 0.03 : 0.6;
+    const decay = duration * 0.9;
+
+    noteGain.gain.setValueAtTime(0.0001, startTime);
+    noteGain.gain.linearRampToValueAtTime(velocity, startTime + attack);
+    noteGain.gain.exponentialRampToValueAtTime(0.0001, startTime + attack + decay);
+
+    osc1.connect(noteGain);
+    osc2.connect(noteGain);
+    noteGain.connect(this.filter);
+
+    osc1.start(startTime);
+    osc2.start(startTime);
+    osc1.stop(startTime + attack + decay + 0.1);
+    osc2.stop(startTime + attack + decay + 0.1);
+  }
+
+  playChordStep() {
+    if (!this.isPlaying || !this.ctx) return;
+    const chord = this.chords[this.chordIndex];
+    const melody = this.melodies[this.chordIndex];
+    const now = this.ctx.currentTime;
+    const chordDuration = 3.9;
+
+    // Arpegio armónico suave
+    chord.forEach((freq, idx) => {
+      const delay = idx * 0.16;
+      this.playNote(freq, now + delay, chordDuration - delay, 0.035);
+    });
+
+    // Pequeño arpegio agudo suave como caja de música
+    if (melody && melody.length) {
+      melody.forEach((freq, idx) => {
+        const delay = 1.5 + idx * 0.6;
+        this.playNote(freq, now + delay, 1.8, 0.025, true);
+      });
+    }
+
+    this.chordIndex = (this.chordIndex + 1) % this.chords.length;
+  }
+
+  start() {
+    this.init();
+    if (this.isPlaying) return;
+    this.isPlaying = true;
+
+    // Fade-in suave de la melodía (1.5s)
+    const now = this.ctx.currentTime;
+    this.masterGain.gain.cancelScheduledValues(now);
+    this.masterGain.gain.setValueAtTime(this.masterGain.gain.value || 0.0001, now);
+    this.masterGain.gain.linearRampToValueAtTime(0.075, now + 1.5); // Volumen exacto muy sutil
+
+    this.chordIndex = 0;
+    this.playChordStep();
+    this.intervalId = setInterval(() => {
+      this.playChordStep();
+    }, 4000);
+  }
+
+  stop() {
+    if (!this.isPlaying) return;
+    this.isPlaying = false;
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+    if (this.ctx && this.masterGain) {
+      const now = this.ctx.currentTime;
+      this.masterGain.gain.cancelScheduledValues(now);
+      this.masterGain.gain.setValueAtTime(this.masterGain.gain.value, now);
+      this.masterGain.gain.linearRampToValueAtTime(0.0001, now + 0.8);
+    }
+  }
+}
+
+const letterAmbience = new LetterAmbience();
+
 function initLetterEnvelope() {
   const envelope = document.getElementById("envelope");
   const letterBody = document.getElementById("letterBody");
@@ -454,11 +595,12 @@ function initLetterEnvelope() {
           updatePlayerUI(false);
         }
 
-        // 2. REPRODUCIR LA CARTA DICTADA
+        // 2. REPRODUCIR LA CARTA DICTADA + TONO MUSICAL SUAVE
         if (letterAudio) {
           letterAudio.currentTime = 0;
           letterAudio.play().then(() => {
             updateLetterVoiceUI(true);
+            letterAmbience.start();
           }).catch(err => {
             console.warn("Autoplay de voz de la carta:", err);
             updateLetterVoiceUI(false);
@@ -477,11 +619,12 @@ function initLetterEnvelope() {
       } else {
         if (openNotice) openNotice.textContent = "Toca el sobre o el sello para abrir";
 
-        // Al cerrar el sobre, pausar la voz
+        // Al cerrar el sobre, pausar la voz y el tono musical suave
         if (letterAudio) {
           letterAudio.pause();
           updateLetterVoiceUI(false);
         }
+        letterAmbience.stop();
 
         // Reanudar la música de fondo si estaba sonando previamente
         if (wasBgPlayingBeforeLetter && bgAudio) {
@@ -505,15 +648,20 @@ function initLetterEnvelope() {
           bgAudio.pause();
           if (typeof updatePlayerUI === "function") updatePlayerUI(false);
         }
-        letterAudio.play().then(() => updateLetterVoiceUI(true));
+        letterAudio.play().then(() => {
+          updateLetterVoiceUI(true);
+          letterAmbience.start();
+        });
       } else {
         letterAudio.pause();
         updateLetterVoiceUI(false);
+        letterAmbience.stop();
       }
     });
 
     letterAudio.addEventListener("ended", () => {
       updateLetterVoiceUI(false);
+      letterAmbience.stop();
       // Reanudar música de fondo al terminar la carta si estaba activa
       if (wasBgPlayingBeforeLetter && bgAudio) {
         bgAudio.play().then(() => {
