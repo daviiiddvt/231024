@@ -405,20 +405,67 @@ function initLetterEnvelope() {
   const letterClosing = document.getElementById("letterClosing");
   const letterSignature = document.getElementById("letterSignature");
   const openNotice = document.getElementById("envelopeOpenNotice");
+  const letterAudio = document.getElementById("letterAudio");
+  const bgAudio = document.getElementById("bgAudio");
+  const toggleLetterAudioBtn = document.getElementById("toggleLetterAudioBtn");
 
   if (letterSalutation) letterSalutation.textContent = CONFIG.letter.salutation;
   if (letterBody) letterBody.innerHTML = CONFIG.letter.body.replace(/\n\n/g, "<br><br>");
   if (letterClosing) letterClosing.textContent = CONFIG.letter.closing;
   if (letterSignature) letterSignature.textContent = CONFIG.letter.signature;
 
+  let wasBgPlayingBeforeLetter = false;
+
+  function updateLetterVoiceUI(playing) {
+    if (!toggleLetterAudioBtn) return;
+    if (playing) {
+      toggleLetterAudioBtn.innerHTML = '<i class="fas fa-pause mr-1"></i><span>Pausar voz</span>';
+      toggleLetterAudioBtn.className = "text-xs bg-rose-500 hover:bg-rose-600 text-white px-3 py-1 rounded-full font-medium transition-all flex items-center gap-1 shadow-sm";
+    } else {
+      toggleLetterAudioBtn.innerHTML = '<i class="fas fa-play mr-1"></i><span>Escuchar voz</span>';
+      toggleLetterAudioBtn.className = "text-xs bg-rose-100 hover:bg-rose-200 text-rose-700 px-3 py-1 rounded-full font-medium transition-all flex items-center gap-1 shadow-sm";
+    }
+  }
+
   if (envelope) {
-    envelope.addEventListener("click", () => {
+    envelope.addEventListener("click", (e) => {
+      // Si el usuario pulsó en el botón de pausar la voz, evitamos cerrar/abrir el sobre
+      if (e.target.closest("#toggleLetterAudioBtn")) {
+        return;
+      }
+
       const isOpening = !envelope.classList.contains("open");
       envelope.classList.toggle("open");
 
       if (isOpening) {
         if (openNotice) openNotice.textContent = "Haz clic de nuevo para cerrar la carta";
-        // Disparar confeti romántico
+
+        // 1. PARAR TODO EL RESTO DE MÚSICA / VIDEOS
+        if (bgAudio && !bgAudio.paused) {
+          wasBgPlayingBeforeLetter = true;
+          bgAudio.pause();
+        } else if (isPlaying) {
+          wasBgPlayingBeforeLetter = true;
+        }
+        if (isYtReady && ytPlayer && typeof ytPlayer.pauseVideo === "function") {
+          ytPlayer.pauseVideo();
+        }
+        if (typeof updatePlayerUI === "function") {
+          updatePlayerUI(false);
+        }
+
+        // 2. REPRODUCIR LA CARTA DICTADA
+        if (letterAudio) {
+          letterAudio.currentTime = 0;
+          letterAudio.play().then(() => {
+            updateLetterVoiceUI(true);
+          }).catch(err => {
+            console.warn("Autoplay de voz de la carta:", err);
+            updateLetterVoiceUI(false);
+          });
+        }
+
+        // 3. Disparar confeti romántico
         if (typeof confetti === "function") {
           confetti({
             particleCount: 80,
@@ -429,6 +476,50 @@ function initLetterEnvelope() {
         }
       } else {
         if (openNotice) openNotice.textContent = "Toca el sobre o el sello para abrir";
+
+        // Al cerrar el sobre, pausar la voz
+        if (letterAudio) {
+          letterAudio.pause();
+          updateLetterVoiceUI(false);
+        }
+
+        // Reanudar la música de fondo si estaba sonando previamente
+        if (wasBgPlayingBeforeLetter && bgAudio) {
+          bgAudio.play().then(() => {
+            if (typeof updatePlayerUI === "function") updatePlayerUI(true);
+          }).catch(() => {});
+          wasBgPlayingBeforeLetter = false;
+        }
+      }
+    });
+  }
+
+  // Control manual del botón dentro de la carta
+  if (toggleLetterAudioBtn && letterAudio) {
+    toggleLetterAudioBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (letterAudio.paused) {
+        // Pausar música de fondo si se reanuda la carta
+        if (bgAudio && !bgAudio.paused) {
+          wasBgPlayingBeforeLetter = true;
+          bgAudio.pause();
+          if (typeof updatePlayerUI === "function") updatePlayerUI(false);
+        }
+        letterAudio.play().then(() => updateLetterVoiceUI(true));
+      } else {
+        letterAudio.pause();
+        updateLetterVoiceUI(false);
+      }
+    });
+
+    letterAudio.addEventListener("ended", () => {
+      updateLetterVoiceUI(false);
+      // Reanudar música de fondo al terminar la carta si estaba activa
+      if (wasBgPlayingBeforeLetter && bgAudio) {
+        bgAudio.play().then(() => {
+          if (typeof updatePlayerUI === "function") updatePlayerUI(true);
+        }).catch(() => {});
+        wasBgPlayingBeforeLetter = false;
       }
     });
   }

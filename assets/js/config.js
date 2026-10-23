@@ -125,7 +125,7 @@ const CONFIG = {
         "Un cachito de luz",
         "Esta vida loca"
       ],
-      correct: 0,
+      correct: 1,
       loveMessage: "Que alguien te saque a bailar o qué?"
     },
     {
@@ -147,7 +147,7 @@ const CONFIG = {
         "¡Los dos por igual!",
         "Ninguno, somos relojes suizos"
       ],
-      correct: 0, // Puedes cambiar el índice según vuestro caso
+      correct: 1, // Puedes cambiar el índice según vuestro caso
       loveMessage: "¡Jajaja! No, enserio"
     },
     {
@@ -240,7 +240,7 @@ const CONFIG = {
     
     Hoy tengo la suerte de poder estar contigo, aquí sentados, frente a frente. Pero también tengo el deber, las ganas y el verdadero gusto de seguir queriéndote.
     
-    Felicidad Sofía, te lo mereces.
+    Felicidades Sofía, te lo mereces.
     
     Un beso muy fuerte guapa.`,
     closing: "Gracias,",
